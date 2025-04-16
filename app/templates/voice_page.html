@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Speech-to-Text</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/voice_page.css">
+    
+</head>
+<body>
+    <div class="wave"></div>
+    <div class="particles" id="particles"></div>
+    <div class="container animate__animated animate__fadeIn">
+        <h2>🎤 Speech-to-Action</h2>
+        
+        <div class="controls">
+            <button id="startRecord" class="animate__animated animate__fadeIn">🔴 Start Recording</button>
+            <button id="stopRecord" disabled class="animate__animated animate__fadeIn">⏹ Stop Recording</button>
+        </div>
+        
+        <p id="status">Ready to record</p>
+        
+        <div class="visualizer" id="visualizer">
+            <!-- Audio bars will be added here by JS -->
+        </div>
+        
+        <div id="output">Transcribed text will appear here...</div>
+    </div>
+
+    <script src="../static/voice_page.js"></script>
+</body>
+</html>

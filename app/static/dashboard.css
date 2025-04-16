@@ -1,0 +1,647 @@
+/* Importing Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --accent-color: #8a2be2;
+    --secondary-color: #646cff;
+    --success-color: #42b883;
+    --error-color: #ff5252;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body { 
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: all 0.3s ease;
+    /* Same background pattern as the speech-to-text interface */
+    background-image: 
+        radial-gradient(circle at 25% 15%, rgba(138, 43, 226, 0.05) 2%, transparent 12%),
+        radial-gradient(circle at 75% 85%, rgba(100, 108, 255, 0.05) 2%, transparent 12%);
+    background-size: 50px 50px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Add wave effect at the bottom */
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%238a2be2" fill-opacity="0.1" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,170.7C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.6;
+    animation: wave 10s ease-in-out infinite alternate;
+}
+
+@keyframes wave {
+    0% { transform: translateY(0) rotate(0); }
+    100% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Add floating particles dynamically via JavaScript */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    animation: addParticles 0.1s forwards;
+}
+
+@keyframes addParticles {
+    to {
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+                     rgba(138, 43, 226, 0.2) 0%, 
+                     transparent 10%),
+                     radial-gradient(circle at var(--x2, 20%) var(--y2, 20%), 
+                     rgba(100, 108, 255, 0.2) 0%, 
+                     transparent 10%);
+    }
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1rem; /* Add gap for wrapped elements */
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.user-controls span {
+    color: #b0b0b0;
+}
+
+.logout-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--card-bg);
+    color: var(--text-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--error-color);
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #e74c3c, #ff5252);
+    color: white;
+}
+
+/* Main content area */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    animation: fadeIn 1s ease-in;
+    width: 100%; /* Ensure full width on mobile */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Control buttons */
+.control-methods {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.control-methods a {
+    text-decoration: none;
+    margin-bottom: 0.5rem; /* Add space when buttons wrap */
+}
+
+.control-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--card-bg);
+    color: var(--text-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%; /* Make buttons full width on mobile */
+}
+
+.control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 50px;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.voice-control {
+    border: 2px solid #a8c5ff;
+}
+
+.voice-control::before {
+    background: linear-gradient(135deg, #16222a 0%, #3a6073 100%);
+}
+
+.voice-control:hover::before {
+    opacity: 1;
+}
+
+.voice-control:hover {
+    color: white;
+}
+
+.gesture-control {
+    border: 2px solid #a8ffe0;
+}
+
+.gesture-control::before {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 100%);
+}
+
+.gesture-control:hover::before {
+    opacity: 1;
+}
+
+.gesture-control:hover {
+    color: white;
+}
+
+/* Cards styling */
+.environmental-data {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.data-card, .appliance-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.data-card::before, .appliance-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(138, 43, 226, 0.03) 50%,
+        transparent 100%
+    );
+    animation: shimmer 8s linear infinite;
+    z-index: 0;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) translateY(-50%) rotate(360deg); }
+}
+
+.data-card > *, .appliance-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.data-card:hover, .appliance-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.data-card-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.temp-icon {
+    color: #ffce45;
+}
+
+.humidity-icon {
+    color: #40c4ff;
+}
+
+.data-card h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 0.5rem;
+}
+
+.data-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Appliance controls styling */
+.appliance-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 1.5rem;
+}
+
+.appliance-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.appliance-icon {
+    transition: color 0.3s;
+    color: #666;
+}
+
+.icon-active.fan-icon {
+    color: #20c997;
+}
+
+.icon-active.light-icon {
+    color: #ffce45;
+}
+
+.icon-active.ac-icon {
+    color: #7c4dff;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.fan-icon.spin {
+    animation: rotate 3s linear infinite;
+}
+
+.appliance-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #f5f5f5;
+}
+
+.power-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: white;
+    background-color: #343a40;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.power-btn:hover {
+    transform: translateY(-2px);
+}
+
+.power-btn.on {
+    background-color: var(--success-color);
+}
+
+/* Status area */
+.status-area {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-area::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(138, 43, 226, 0.03) 50%,
+        transparent 100%
+    );
+    animation: shimmer 8s linear infinite;
+    z-index: 0;
+}
+
+.status-area > * {
+    position: relative;
+    z-index: 1;
+}
+
+.status-message {
+    text-align: center;
+    color: #b0b0b0;
+    margin: 0;
+}
+
+/* Add this script to create floating particles dynamically */
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(10px, -10px); }
+    50% { transform: translate(20px, 0px); }
+    75% { transform: translate(10px, 10px); }
+}
+
+/* Add more modern styling to SVG icons */
+svg.icon {
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+svg.appliance-icon {
+    stroke-width: 1.5;
+    height: 48px;
+    width: 48px;
+}
+
+/* Add a light glow effect to active icons */
+.icon-active {
+    filter: drop-shadow(0 0 5px currentColor);
+}
+
+/* Make sure the icons in buttons are properly sized */
+.power-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Voice Command Section */
+.command-section {
+    background-color: #1f2937; /* dark slate */
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    max-width: 100%; /* Use full width on mobile */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .command-section {
+        max-width: 500px; /* Use fixed width on larger screens */
+    }
+}
+
+.command-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: #38bdf8; /* sky blue */
+}
+
+@media (min-width: 768px) {
+    .command-section h2 {
+        font-size: 1.8rem; /* Larger font on bigger screens */
+    }
+}
+
+.command-section p {
+    font-size: 1rem;
+    background-color: #111827; /* darker inner background */
+    padding: 12px;
+    border-radius: 10px;
+    font-family: monospace;
+    word-break: break-word;
+    animation: fadeIn 0.4s ease;
+}
+
+@media (min-width: 768px) {
+    .command-section p {
+        font-size: 1.2rem; /* Larger font on bigger screens */
+    }
+}
+
+.command-section button {
+    background-color: #3b82f6; /* blue */
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%; /* Full width on mobile */
+    max-width: 250px; /* Maximum width */
+    margin-top: 15px;
+}
+
+.command-section button:hover {
+    background-color: #2563eb; /* darker blue */
+    transform: translateY(-2px);
+}
+
+/* Add touch-friendly elements for mobile */
+@media (max-width: 767px) {
+    /* Increase touch targets */
+    .power-btn, .control-btn, .logout-btn, .command-section button {
+        padding: 12px 24px;
+        min-height: 44px; /* Minimum recommended touch target height */
+    }
+    
+    /* Adjust spacing for mobile */
+    main {
+        padding: 1rem 0.75rem;
+    }
+    
+    /* Make header more compact on small screens */
+    header {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    /* Ensure cards are easily tappable */
+    .data-card, .appliance-card {
+        padding: 1.25rem;
+        min-height: 100px;
+    }
+}
+
+.dark-theme {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+}
+
+/* Add print styles */
+@media print {
+    body::after, body::before {
+        display: none; /* Hide decorative elements when printing */
+    }
+    
+    .data-card, .appliance-card, .status-area {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .logout-btn, .control-btn, .power-btn {
+        display: none; /* Hide interactive elements when printing */
+    }
+}
+
+/* Fix for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    body::after, .data-card::before, .appliance-card::before, .status-area::before {
+        animation: none;
+    }
+    
+    .fan-icon.spin {
+        animation: none;
+    }
+    
+    .command-section p {
+        animation: none;
+    }
+}
+
+/* Extra adjustments for ultra-wide screens */
+@media (min-width: 1400px) {
+    main {
+        max-width: 1400px;
+    }
+    
+    .environmental-data {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .appliance-controls {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    :root {
+        --accent-color: HighlightText;
+        --secondary-color: HighlightText;
+        --success-color: HighlightText;
+        --error-color: HighlightText;
+    }
+    
+    .icon-active.fan-icon,
+    .icon-active.light-icon,
+    .icon-active.ac-icon {
+        color: Highlight;
+    }
+    
+    .power-btn.on {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+}
+
+/* Style adjustments for small height devices like landscape mobile */
+@media (max-height: 600px) {
+    header {
+        padding: 0.75rem;
+    }
+    
+    main {
+        padding: 1rem 0.75rem;
+    }
+    
+    .data-card, .appliance-card {
+        padding: 1rem;
+    }
+}
+
+/* Support for device orientation */
+@media (orientation: landscape) and (max-height: 500px) {
+    .environmental-data {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .appliance-controls {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
