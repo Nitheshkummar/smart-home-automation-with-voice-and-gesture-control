@@ -12,7 +12,7 @@ import atexit
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 
-SARVAM_API_KEY = "38d7e24a-c064-465c-946e-4b9f858fda49"
+SARVAM_API_KEY = "Your sarvam key"
 SARVAM_API_URL = "https://api.sarvam.ai/speech-to-text-translate"
 
 # Smart home state
