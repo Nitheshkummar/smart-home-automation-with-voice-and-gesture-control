@@ -84,7 +84,7 @@ The image above (`demo_smart_home.jpg`) shows the system in action, demonstratin
 
 ## Authors & Credits
 
-- Project by [Your Name/Team]
+- Project by Scientists
 - For academic, research, or personal use.
 
 ---
@@ -92,3 +92,4 @@ The image above (`demo_smart_home.jpg`) shows the system in action, demonstratin
 ## License
 
 This project is provided for educational purposes. Please check individual files for license details if present.
+
